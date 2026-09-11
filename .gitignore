@@ -1,0 +1,37 @@
+# ===== .NET Build Artifacts =====
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ===== Visual Studio =====
+.vs/
+*.vspscc
+*.vssscc
+
+# ===== Azure Functions =====
+local.settings.json
+*.zip
+publish/
+bin/output/
+
+# ===== Azure Storage Emulator Data =====
+__azurite_db_*.json
+__blobstorage__/
+__queuestorage__/
+__tablestorage__/
+
+# ===== OS Files =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Environment / Secrets =====
+*.env
+.env.local
+
+# ===== IDE Folders =====
+.idea/
+.vscode/
