@@ -18,7 +18,14 @@ What does the application do?
 Explain how the components interact.
 
 4. Prerequisites
-What must be installed?
+NuGet Packages
+- Azure.Data.Tables
+- Azure.Storage.Files.Shares
+- Microsoft.ApplicationInsights.WorkerService
+- Microsoft.Azure.Functions.Worker
+- Microsoft.Azure.Functions.Worker.Sdk
+- Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore
+- Microsoft.Azure.Functions.Worker.ApplicationInsights
 
 6. Setup Instructions
 Step-by-step instructions to run it.
