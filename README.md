@@ -18,6 +18,7 @@ What does the application do?
 Explain how the components interact.
 
 4. Prerequisites
+
 NuGet Packages
 - Azure.Data.Tables
 - Azure.Storage.Files.Shares
@@ -27,23 +28,21 @@ NuGet Packages
 - Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore
 - Microsoft.Azure.Functions.Worker.ApplicationInsights
 
-6. Setup Instructions
+5. Setup Instructions
 Step-by-step instructions to run it.
 
-8. API Endpoints
+6. API Endpoints
 List the endpoints and explain what they do.
 
-10. Docker Instructions
+7. Docker Instructions
 How to build and run the container.
 
-12. Testing
+8. Testing
 Explain how to test the API.
 
-14. Team Contributions
+9. Team Contributions
 Who did what?
 
 #10. Video Demonstration
 Link to the unlisted YouTube video.
 
-16. Version
-v1.0.0
