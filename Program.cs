@@ -1,7 +1,6 @@
 using CoffeeNChill.Functions.Services;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.Hosting;
-using System;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
