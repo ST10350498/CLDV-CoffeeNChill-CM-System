@@ -32,9 +32,12 @@ namespace CoffeeNChill.Functions.Services
             await directory.CreateIfNotExistsAsync();
 
             var file = directory.GetFileClient(fileName);
-            await file.CreateAsync(fileStream.Length, new ShareFileHttpHeaders
+            await file.CreateAsync(fileStream.Length, new ShareFileCreateOptions
             {
-                ContentType = contentType
+                HttpHeaders = new ShareFileHttpHeaders
+                {
+                    ContentType = contentType
+                }
             });
 
             fileStream.Position = 0;

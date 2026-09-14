@@ -1,9 +1,13 @@
 ﻿using CoffeeNChill.Functions.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
+using Azure.Data.Tables;
+using System.IO;
+using System;
 
 namespace CoffeeNChill.Functions.Functions
 {
@@ -13,7 +17,6 @@ namespace CoffeeNChill.Functions.Functions
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "menu")]
             HttpRequest req,
-            [Table("MenuItems")] IAsyncCollector<MenuItem> menuTable,
             ILogger log)
         {
             log.LogInformation("CreateMenuItem function processed a request.");
@@ -68,7 +71,10 @@ namespace CoffeeNChill.Functions.Functions
                 var menuItem = new MenuItem(category, sku, name, description, price, isAvailable);
 
                 // Insert into Azure Table Storage
-                await menuTable.AddAsync(menuItem);
+                var conn = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+                var serviceClient = new TableServiceClient(conn);
+                var tableClient = serviceClient.GetTableClient("MenuItems");
+                await tableClient.AddEntityAsync(menuItem);
 
                 log.LogInformation($"Menu item '{name}' created successfully with SKU '{sku}'.");
 

@@ -2,9 +2,10 @@
 using CoffeeNChill.Functions.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace CoffeeNChill.Functions.Functions
 {
@@ -17,7 +18,6 @@ namespace CoffeeNChill.Functions.Functions
             HttpRequest req,
             string category,
             string id,
-            [Table("MenuItems")] TableClient menuTable,
             ILogger log)
         {
             log.LogInformation($"DeleteMenuItem function processed request for: {category}/{id}");
@@ -30,7 +30,10 @@ namespace CoffeeNChill.Functions.Functions
 
             try
             {
-                // Check if item exists
+                // Create TableClient and check if item exists
+                var conn = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+                var serviceClient = new TableServiceClient(conn);
+                var menuTable = serviceClient.GetTableClient("MenuItems");
                 var existingItem = await menuTable.GetEntityAsync<MenuItem>(category, id);
 
                 if (existingItem == null || existingItem.Value == null)

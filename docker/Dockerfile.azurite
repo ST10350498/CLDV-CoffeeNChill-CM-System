@@ -1,0 +1,3 @@
+FROM mcr.microsoft.com/azure-storage/azurite:3.20.0
+
+# Azurite image already exposes ports 10000 (blob) and 10001 (queue) and 10002 (file)

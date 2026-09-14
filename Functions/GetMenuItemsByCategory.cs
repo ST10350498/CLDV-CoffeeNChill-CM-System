@@ -2,9 +2,11 @@
 using CoffeeNChill.Functions.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System;
 
 namespace CoffeeNChill.Functions.Functions
 {
@@ -16,7 +18,6 @@ namespace CoffeeNChill.Functions.Functions
                 Route = "menu/category/{category}")]
             HttpRequest req,
             string category,
-            [Table("MenuItems")] TableClient menuTable,
             ILogger log)
         {
             log.LogInformation($"GetMenuItemsByCategory function processed request for category: {category}");
@@ -29,8 +30,11 @@ namespace CoffeeNChill.Functions.Functions
 
             try
             {
-                // Filter by PartitionKey (Category)
-                var queryResults = menuTable.Query<MenuItem>(
+                // Create TableClient and filter by PartitionKey (Category)
+                var conn = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+                var serviceClient = new TableServiceClient(conn);
+                var tableClient = serviceClient.GetTableClient("MenuItems");
+                var queryResults = tableClient.Query<MenuItem>(
                     filter: $"PartitionKey eq '{category}'");
 
                 var menuItems = queryResults.ToList();

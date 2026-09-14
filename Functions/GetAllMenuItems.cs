@@ -2,9 +2,11 @@
 using CoffeeNChill.Functions.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System;
 
 namespace CoffeeNChill.Functions.Functions
 {
@@ -14,15 +16,17 @@ namespace CoffeeNChill.Functions.Functions
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "menu")]
             HttpRequest req,
-            [Table("MenuItems")] TableClient menuTable,
             ILogger log)
         {
             log.LogInformation("GetAllMenuItems function processed a request.");
 
             try
             {
-                // Query all menu items
-                var queryResults = menuTable.Query<MenuItem>(filter: "");
+                // Create TableClient and query all menu items
+                var conn = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+                var serviceClient = new TableServiceClient(conn);
+                var tableClient = serviceClient.GetTableClient("MenuItems");
+                var queryResults = tableClient.Query<MenuItem>();
                 var menuItems = queryResults.ToList();
 
                 log.LogInformation($"Retrieved {menuItems.Count} menu items.");
