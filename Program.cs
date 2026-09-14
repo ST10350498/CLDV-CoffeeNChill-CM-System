@@ -1,6 +1,7 @@
 using CoffeeNChill.Functions.Services;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.Hosting;
+using Azure.Data.Tables;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
@@ -20,8 +21,25 @@ else
     fileShareConnString = storageConnectionString;
 }
 
+// Ensure functions can use the file storage connection string via FileStorageConnection env var
+Environment.SetEnvironmentVariable("FileStorageConnection", fileShareConnString);
+
 var fileService = new FileShareService(fileShareConnString, "staff-docs");
 await fileService.InitializeAsync();
 Console.WriteLine("staff-docs file share initialized (Recipes, Manuals, Policies).");
+
+// Best-effort: ensure MenuItems table exists
+try
+{
+    var tableConn = Environment.GetEnvironmentVariable("TableStorageConnection") ?? storageConnectionString;
+    var tableService = new TableServiceClient(tableConn);
+    var tableClient = tableService.GetTableClient("MenuItems");
+    await tableClient.CreateIfNotExistsAsync();
+    Console.WriteLine("MenuItems table ensured in storage.");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Warning: failed to ensure MenuItems table exists: {ex.Message}");
+}
 
 builder.Build().Run();
