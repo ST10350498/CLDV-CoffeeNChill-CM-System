@@ -1,21 +1,38 @@
 
 CoffeeNChill
 
-This repository contains the CoffeeNChill Azure Functions project and helper files for local development.
+1. Project Description What does the application do?
 
-Added development helpers (Part 1):
+2. Technologies Used
 
-create
-- docs/
-  - postman/CoffeeNChill_Part1_Collection.json
-  - api-specification.md
-- docker/
-  - Dockerfile.functions
-  - Dockerfile.azurite
-- scripts/
-  - start-azurite.sh
-  - build-functions.sh
-- docker-compose.yml      # For Part 2 (service composition)
+C#
+.NET 8
+Azure Functions
+Azure Storage
+Docker
+Azurite
+Postman
+Architecture Explain how the components interact.
 
-See docs/api-specification.md for a short API summary and scripts/ for convenience scripts.
+3. Prerequisites
 
+NuGet Packages
+
+Azure.Data.Tables
+Azure.Storage.Files.Shares
+Microsoft.ApplicationInsights.WorkerService
+Microsoft.Azure.Functions.Worker
+Microsoft.Azure.Functions.Worker.Sdk
+Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore
+Microsoft.Azure.Functions.Worker.ApplicationInsights
+Setup Instructions Step-by-step instructions to run it.
+
+4. API Endpoints List the endpoints and explain what they do.
+
+5. Docker Instructions How to build and run the container.
+
+6. Testing Explain how to test the API.
+
+7. Team Contributions Who did what?
+
+8. Video Demonstration Link to the unlisted YouTube video.
