@@ -1,4 +1,5 @@
 
+
 CoffeeNChill
 
 1. Project Description What does the application do?
@@ -36,6 +37,9 @@ Setup Instructions Step-by-step instructions to run it.
 7. Team Contributions Who did what?
 
 8. Video Demonstration Link to the unlisted YouTube video.
+
+
+   <img width="1105" height="301" alt="Screenshot 2026-09-15 151345" src="https://github.com/user-attachments/assets/9858de4b-497f-4dd7-be0b-94e134203b63" />
 
 
 <img width="1496" height="858" alt="image" src="https://github.com/user-attachments/assets/a9070309-6464-46d9-9fc5-ddefa8d5c2f8" />
