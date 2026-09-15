@@ -36,3 +36,7 @@ Setup Instructions Step-by-step instructions to run it.
 7. Team Contributions Who did what?
 
 8. Video Demonstration Link to the unlisted YouTube video.
+
+
+<img width="1496" height="858" alt="image" src="https://github.com/user-attachments/assets/a9070309-6464-46d9-9fc5-ddefa8d5c2f8" />
+
