@@ -359,8 +359,8 @@ func azure functionapp publish coffeenchill-functions --build remote
 
 | Team Member | Role | Contributions |
 |------------|------|-----------------|
-| ST10350498 | Full Stack Developer | Azure Functions implementation, Table Storage & File Share integration, API endpoints development, Docker containerization, comprehensive documentation |
-
+| ST10350498 - Full Stack Developer  Azure Functions implementation, Table Storage & File Share integration, API endpoints development, Docker containerization, comprehensive documentation 
+  ST10492508 - azurite setup, menu crud functions, table entity design
 **Work Summary:**
 - Implemented 8 HTTP-triggered Azure Functions covering complete CRUD operations
 - Integrated Azure Table Storage for menu items management
