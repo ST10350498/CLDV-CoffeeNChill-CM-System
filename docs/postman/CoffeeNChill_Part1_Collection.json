@@ -1,9 +1,149 @@
 {
   "info": {
-    "name": "CoffeeNChill Part1 Collection",
-    "_postman_id": "",
-    "description": "Placeholder Postman collection for Part 1 API endpoints.",
+    "name": "CoffeeNChill Part 1 - Menu & Documents API",
+    "description": "Complete API test collection for CoffeeNChill menu and staff document management system",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
-  "item": []
+  "item": [
+    {
+      "name": "Menu - Create Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category\": \"Hot Drinks\",\n  \"sku\": \"COF-001\",\n  \"name\": \"Espresso\",\n  \"description\": \"Strong single shot of espresso\",\n  \"price\": 2.50,\n  \"isAvailable\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:7071/api/menu",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "menu"]
+        }
+      }
+    },
+    {
+      "name": "Menu - Get All Items",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7071/api/menu",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "menu"]
+        }
+      }
+    },
+    {
+      "name": "Menu - Get by Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7071/api/menu/category/Hot%20Drinks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "menu", "category", "Hot Drinks"]
+        }
+      }
+    },
+    {
+      "name": "Menu - Update Item",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category\": \"Hot Drinks\",\n  \"sku\": \"COF-001\",\n  \"name\": \"Espresso\",\n  \"description\": \"Strong single shot of espresso\",\n  \"price\": 3.00,\n  \"isAvailable\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:7071/api/menu/Hot%20Drinks/COF-001",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "menu", "Hot Drinks", "COF-001"]
+        }
+      }
+    },
+    {
+      "name": "Menu - Delete Item",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7071/api/menu/Hot%20Drinks/COF-001",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "menu", "Hot Drinks", "COF-001"]
+        }
+      }
+    },
+    {
+      "name": "Documents - Upload",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/path/to/your/document.pdf"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:7071/api/documents/upload",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "documents", "upload"]
+        }
+      }
+    },
+    {
+      "name": "Documents - List All",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7071/api/documents",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "documents"]
+        }
+      }
+    },
+    {
+      "name": "Documents - Download",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7071/api/documents/download/example.pdf",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "7071",
+          "path": ["api", "documents", "download", "example.pdf"]
+        }
+      }
+    }
+  ]
 }
